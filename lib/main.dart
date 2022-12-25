@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whatsappclonw/views/auth_view.dart';
+import 'package:whatsappclonw/views/auth_view/auth_view.dart';
 import 'package:whatsappclonw/utils/country_codes.dart';
-import 'package:whatsappclonw/views/countryCode_view.dart';
+import 'package:whatsappclonw/views/auth_view/countryCode_view.dart';
 
 void main() {
   runApp(const MaterialApp(

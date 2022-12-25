@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:whatsappclonw/views/countryCode_view.dart';
+import 'package:whatsappclonw/views/auth_view/countryCode_view.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -10,7 +10,7 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthView extends State<AuthView> {
-  Map<String, String> countryData = {
+  Map<String, String> _countryData = {
     "name": "India",
     "dial_code": "+91",
     "code": "IN"
@@ -46,7 +46,7 @@ class _AuthView extends State<AuthView> {
               padding: const EdgeInsets.all(10.0),
               child: TextButton(
                 onPressed: () {
-                  final fullNumber = countryData["dial_code"].toString() +
+                  final fullNumber = _countryData["dial_code"].toString() +
                       _phoneNumber.text.toString();
                   print(fullNumber);
                 },
@@ -90,7 +90,7 @@ class _AuthView extends State<AuthView> {
 
               setState(
                 () {
-                  countryData = result;
+                  _countryData = result;
                 },
               );
             },
@@ -98,7 +98,7 @@ class _AuthView extends State<AuthView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  countryData["name"].toString(),
+                  _countryData["name"].toString(),
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -116,7 +116,7 @@ class _AuthView extends State<AuthView> {
             child: Row(
               children: [
                 Text(
-                  countryData["dial_code"].toString(),
+                  _countryData["dial_code"].toString(),
                   style: const TextStyle(
                       fontSize: 25, fontWeight: FontWeight.w600),
                 ),
@@ -138,7 +138,8 @@ class _AuthView extends State<AuthView> {
                     decoration: const InputDecoration(
                       hintText: "Phone number",
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(style: BorderStyle.none)),
+                        borderSide: BorderSide(style: BorderStyle.none),
+                      ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           style: BorderStyle.none,
