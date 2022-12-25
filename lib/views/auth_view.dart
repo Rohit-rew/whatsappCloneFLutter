@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:whatsappclonw/views/countryCode_view.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -9,26 +10,53 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthView extends State<AuthView> {
+  Map<String, String> countryData = {
+    "name": "India",
+    "dial_code": "+91",
+    "code": "IN"
+  };
+
+  late TextEditingController _phoneNumber;
+
+  @override
+  void initState() {
+    _phoneNumber = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _phoneNumber.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 241, 241, 241),
+        backgroundColor: const Color.fromARGB(255, 241, 241, 241),
         elevation: 0,
         title: const Text(
           "Phone number",
           style: TextStyle(color: Colors.black),
         ),
-        actions: const [
+        actions: [
           Center(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Done",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+              child: TextButton(
+                onPressed: () {
+                  final fullNumber = countryData["dial_code"].toString() +
+                      _phoneNumber.text.toString();
+                  print(fullNumber);
+                },
+                child: const Text(
+                  "Done",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           )
@@ -50,18 +78,33 @@ class _AuthView extends State<AuthView> {
             color: Color.fromARGB(255, 124, 124, 124),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              Map<String, String> result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const ChooseCountryView();
+                  },
+                ),
+              );
+
+              setState(
+                () {
+                  countryData = result;
+                },
+              );
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
-                  "United States",
-                  style: TextStyle(
+                  countryData["name"].toString(),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios),
+                const Icon(Icons.arrow_forward_ios),
               ],
             ),
           ),
@@ -72,17 +115,19 @@ class _AuthView extends State<AuthView> {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Row(
               children: [
-                const Text(
-                  "+91",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                Text(
+                  countryData["dial_code"].toString(),
+                  style: const TextStyle(
+                      fontSize: 25, fontWeight: FontWeight.w600),
                 ),
                 const VerticalDivider(
                   thickness: 10,
                   color: Colors.black,
                 ),
                 SizedBox(
-                  width: 320,
+                  width: 250,
                   child: TextField(
+                    controller: _phoneNumber,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(10),
                     ],
@@ -92,14 +137,11 @@ class _AuthView extends State<AuthView> {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: "Phone number",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 250, 250, 250),
-                        ),
-                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(style: BorderStyle.none)),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromARGB(255, 250, 250, 250),
+                          style: BorderStyle.none,
                         ),
                       ),
                     ),
