@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -43,41 +44,41 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDqmOseoBMKwP15CFYMGtXUtqC7CUT1bYQ',
-    appId: '1:242239434832:web:87aad34f6ba3cc2c3b6155',
-    messagingSenderId: '242239434832',
-    projectId: 'whatsappclone-14f5e',
-    authDomain: 'whatsappclone-14f5e.firebaseapp.com',
-    storageBucket: 'whatsappclone-14f5e.appspot.com',
-    measurementId: 'G-16KBDD4EQT',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.env['apiKey']!,
+    appId: dotenv.env['appId']!,
+    messagingSenderId: dotenv.env['messagingSenderId']!,
+    projectId: dotenv.env['projectId']!,
+    authDomain: dotenv.env['authDomain']!,
+    storageBucket: dotenv.env['storageBucket']!,
+    measurementId: dotenv.env['measurementId']!,
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAsnCZPVelcYUtBHjC1sSeOLwht6wFD5hE',
-    appId: '1:242239434832:android:67791a44b82078fe3b6155',
-    messagingSenderId: '242239434832',
-    projectId: 'whatsappclone-14f5e',
-    storageBucket: 'whatsappclone-14f5e.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['apiKey']!,
+    appId: dotenv.env['appId']!,
+    messagingSenderId: dotenv.env['messagingSenderId']!,
+    projectId: dotenv.env['projectId']!,
+    storageBucket: dotenv.env['storageBucket']!,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC--_P2ppIgtsNNfIWwL_OACe51gtQA45w',
-    appId: '1:242239434832:ios:083d342dc426eed63b6155',
-    messagingSenderId: '242239434832',
-    projectId: 'whatsappclone-14f5e',
-    storageBucket: 'whatsappclone-14f5e.appspot.com',
-    iosClientId: '242239434832-94blp8o1n9j67ouv32il2fh5adqu2m53.apps.googleusercontent.com',
-    iosBundleId: 'com.example.whatsappclonw',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env['apiKey']!,
+    appId: dotenv.env['appId']!,
+    messagingSenderId: dotenv.env['messagingSenderId']!,
+    projectId: dotenv.env['projectId']!,
+    storageBucket: dotenv.env['storageBucket']!,
+    iosClientId: dotenv.env['iosClientId']!,
+    iosBundleId: dotenv.env['iosBundleId']!,
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC--_P2ppIgtsNNfIWwL_OACe51gtQA45w',
-    appId: '1:242239434832:ios:083d342dc426eed63b6155',
-    messagingSenderId: '242239434832',
-    projectId: 'whatsappclone-14f5e',
-    storageBucket: 'whatsappclone-14f5e.appspot.com',
-    iosClientId: '242239434832-94blp8o1n9j67ouv32il2fh5adqu2m53.apps.googleusercontent.com',
-    iosBundleId: 'com.example.whatsappclonw',
+  static FirebaseOptions macos = FirebaseOptions(
+    apiKey: dotenv.env['apiKey']!,
+    appId: dotenv.env['appId']!,
+    messagingSenderId: dotenv.env['messagingSenderId']!,
+    projectId: dotenv.env['projectId']!,
+    storageBucket: dotenv.env['storageBucket']!,
+    iosClientId: dotenv.env['iosClientId']!,
+    iosBundleId: dotenv.env['iosBundleId']!,
   );
 }

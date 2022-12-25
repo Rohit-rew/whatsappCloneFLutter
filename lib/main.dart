@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:whatsappclonw/views/auth_view/auth_view.dart';
 import 'package:whatsappclonw/utils/country_codes.dart';
 import 'package:whatsappclonw/views/auth_view/countryCode_view.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Whatsapp Clone",
@@ -42,11 +44,11 @@ class _VerificationView extends State<VerificationView> {
           ),
           TextButton(
             onPressed: () {},
-            child: Text("Wrong Number ?"),
+            child: const Text("Wrong Number ?"),
           ),
-          TextField(),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
+          const TextField(),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
             child: Text("Enter 6-digit code"),
           ),
           Padding(
@@ -63,7 +65,7 @@ class _VerificationView extends State<VerificationView> {
               ],
             ),
           ),
-          Divider(color: Colors.black45),
+          const Divider(color: Colors.black45),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: Row(
