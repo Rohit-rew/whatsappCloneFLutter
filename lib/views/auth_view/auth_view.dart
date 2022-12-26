@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:whatsappclonw/views/auth_view/countryCode_view.dart';
+import 'package:whatsappclonw/views/auth_view/varification_view.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -49,6 +50,10 @@ class _AuthView extends State<AuthView> {
                   final fullNumber = _countryData["dial_code"].toString() +
                       _phoneNumber.text.toString();
                   print(fullNumber);
+                  // send otp message to the number and redirect to the bewlow route after the message is sent
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const VerificationView();
+                  }));
                 },
                 child: const Text(
                   "Done",
